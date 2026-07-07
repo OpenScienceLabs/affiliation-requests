@@ -1,0 +1,188 @@
+name: Affiliation request
+description: Request affiliation with Open Science Labs
+title: "Affiliation request: <project name>"
+labels:
+  - "type: affiliation-request"
+  - "status: needs-triage"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting affiliation with Open Science Labs (OSL).
+
+        Affiliation is a lightweight relationship. It does not transfer project
+        ownership, governance, intellectual property, maintenance responsibility,
+        or roadmap control to OSL.
+
+        Participation in Google Summer of Code, internships, grants,
+        sponsorship, or similar opportunities is not guaranteed. Even when OSL
+        participates in GSoC, contributor slots are limited.
+
+  - type: input
+    id: project_name
+    attributes:
+      label: Project name
+      placeholder: Example Project
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+      placeholder: https://github.com/org/project
+    validations:
+      required: true
+
+  - type: input
+    id: website
+    attributes:
+      label: Website or documentation URL
+      placeholder: https://example.org/project
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description
+      description: What does the project do and who is it for?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alignment
+    attributes:
+      label: Alignment with OSL
+      description: >-
+        How does this project align with open science, open source, research,
+        education, public-interest technology, or open infrastructure?
+    validations:
+      required: true
+
+  - type: input
+    id: license
+    attributes:
+      label: License link
+      placeholder: https://github.com/org/project/blob/main/LICENSE
+    validations:
+      required: true
+
+  - type: input
+    id: code_of_conduct
+    attributes:
+      label: Code of Conduct link
+      placeholder: https://github.com/org/project/blob/main/CODE_OF_CONDUCT.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: maintainers
+    attributes:
+      label: Maintainers
+      description: List maintainer names, GitHub handles, and public contact path.
+      placeholder: "- Name (@handle), email or contact path"
+    validations:
+      required: true
+
+  - type: input
+    id: communication
+    attributes:
+      label: Public communication channel or contact path
+      placeholder: GitHub Discussions, Discord, mailing list, issue tracker, etc.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: maintenance_status
+    attributes:
+      label: Maintenance status
+      options:
+        - Active
+        - Maintained / stable
+        - Temporarily paused
+        - Other / explain below
+    validations:
+      required: true
+
+  - type: textarea
+    id: maintenance_notes
+    attributes:
+      label: Maintenance notes
+      description: >-
+        Describe recent activity, stable status, release cadence, or maintenance
+        plan.
+    validations:
+      required: true
+
+  - type: input
+    id: contributing
+    attributes:
+      label: Contribution instructions URL
+      placeholder: https://github.com/org/project/blob/main/CONTRIBUTING.md
+    validations:
+      required: false
+
+  - type: input
+    id: security
+    attributes:
+      label: Security policy or vulnerability reporting URL
+      placeholder: https://github.com/org/project/blob/main/SECURITY.md
+    validations:
+      required: false
+
+  - type: textarea
+    id: collaboration
+    attributes:
+      label: What collaboration are you seeking through OSL?
+      description: >-
+        Visibility, community connection, internships, GSoC ideas, grants,
+        mentorship, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: program_readiness
+    attributes:
+      label: Program readiness, if applicable
+      description: >-
+        If you want internships or GSoC, describe project ideas, mentors, and
+        review capacity. If not applicable, write N/A.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: required_checks
+    attributes:
+      label: Required checks
+      options:
+        - label: The project uses an OSI-approved open-source license.
+          required: true
+        - label: The repository includes a public LICENSE file.
+          required: true
+        - label: The project has a Code of Conduct with a reporting path.
+          required: true
+        - label: The project has at least one active or reachable maintainer.
+          required: true
+        - label: The project has a public repository.
+          required: true
+        - label: >-
+            The project has a public issue tracker, discussion channel, project
+            board, or documented contact path.
+          required: true
+        - label: >-
+            The project is not archived, closed-source, abandoned, misleading,
+            or unsafe for contributors.
+          required: true
+        - label: >-
+            I understand affiliation does not transfer ownership, governance,
+            IP, roadmap, or maintenance responsibility to OSL.
+          required: true
+        - label: >-
+            If accepted, we will acknowledge OSL affiliation in README.md and
+            public documentation where applicable.
+          required: true
+        - label: >-
+            I understand GSoC, internships, grants, funding, contributors,
+            mentors, and promotion are not guaranteed.
+          required: true

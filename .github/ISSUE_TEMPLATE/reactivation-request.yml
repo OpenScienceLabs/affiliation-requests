@@ -1,0 +1,47 @@
+name: Reactivation request
+description: Request reactivation after affiliation was paused or removed
+title: "Reactivation request: <project name>"
+labels:
+  - "type: reactivation-request"
+  - "status: needs-triage"
+body:
+  - type: input
+    id: project_name
+    attributes:
+      label: Project name
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+    validations:
+      required: true
+  - type: input
+    id: prior_issue
+    attributes:
+      label: Prior removal or maintenance issue
+    validations:
+      required: false
+  - type: textarea
+    id: changes
+    attributes:
+      label: What changed?
+      description: Explain how required criteria and maintenance have been restored.
+    validations:
+      required: true
+  - type: checkboxes
+    id: restored_requirements
+    attributes:
+      label: Restored requirements
+      options:
+        - label: OSI-approved license is present.
+          required: true
+        - label: Code of Conduct is present.
+          required: true
+        - label: Maintainers are reachable.
+          required: true
+        - label: Repository is public and not archived.
+          required: true
+        - label: README/docs acknowledgement will be updated if reactivated.
+          required: true

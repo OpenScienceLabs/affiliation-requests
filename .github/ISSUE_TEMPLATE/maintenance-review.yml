@@ -1,0 +1,47 @@
+name: Maintenance review
+description: Review an affiliated project that may need attention
+title: "Maintenance review: <project name>"
+labels:
+  - "type: maintenance-review"
+  - "status: needs-triage"
+body:
+  - type: input
+    id: project_name
+    attributes:
+      label: Project name
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+    validations:
+      required: true
+  - type: checkboxes
+    id: concerns
+    attributes:
+      label: Concerns
+      options:
+        - label: Missing or unclear license
+        - label: Missing Code of Conduct
+        - label: Repository archived
+        - label: Repository unreachable
+        - label: Website/docs link broken
+        - label: Maintainer unreachable
+        - label: No recent activity and no stable-maintenance note
+        - label: Unsafe or hostile community behavior
+        - label: Misleading OSL affiliation/branding language
+        - label: Other
+  - type: textarea
+    id: details
+    attributes:
+      label: Details and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: maintainer_pings
+    attributes:
+      label: Maintainers to ping
+      placeholder: "@maintainer1 @maintainer2"
+    validations:
+      required: false

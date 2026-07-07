@@ -1,0 +1,60 @@
+name: Affiliation intake
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Acknowledge and label affiliation requests
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const labelNames = issue.labels.map((label) =>
+              typeof label === 'string' ? label : label.name
+            );
+            const isAffiliationRequest =
+              labelNames.includes('type: affiliation-request') ||
+              issue.title.startsWith('Affiliation request:');
+
+            if (!isAffiliationRequest) {
+              core.info('Issue is not an affiliation request; skipping.');
+              return;
+            }
+
+            if (context.payload.action === 'opened') {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Thanks for opening an OSL affiliation request.
+
+An OSL reviewer will check the required evidence: OSI-approved license, Code of Conduct, maintainer contact, public repository, maintenance status, and alignment with OSL.
+
+Reminder: affiliation does not guarantee GSoC participation, contributor slots, funding, interns, mentors, or promotion. If approved, please add the OSL affiliation acknowledgement to your README/docs.`
+              });
+            }
+
+            const labelsToAdd = [];
+            if (!labelNames.includes('type: affiliation-request')) {
+              labelsToAdd.push('type: affiliation-request');
+            }
+            if (!labelNames.some((name) => name.startsWith('status: '))) {
+              labelsToAdd.push('status: needs-triage');
+            }
+
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labelsToAdd
+              });
+            }

@@ -1,0 +1,50 @@
+name: Removal review
+description: Review whether to remove an affiliated project from OSL public lists
+title: "Removal review: <project name>"
+labels:
+  - "type: removal-review"
+  - "status: in-review"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Removal from the OSL public list is not permanent. A project may request
+        reactivation after restoring baseline requirements and maintenance.
+  - type: input
+    id: project_name
+    attributes:
+      label: Project name
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL
+    validations:
+      required: true
+  - type: input
+    id: prior_review
+    attributes:
+      label: Prior maintenance review issue
+      placeholder: https://github.com/OpenScienceLabs/affiliation-requests/issues/123
+    validations:
+      required: true
+  - type: checkboxes
+    id: removal_reasons
+    attributes:
+      label: Removal reasons
+      options:
+        - label: No maintainer response after review period
+        - label: Missing license not resolved
+        - label: Missing Code of Conduct not resolved
+        - label: Repository archived or unreachable
+        - label: Project closed-source or relicensed incompatibly
+        - label: Project unsafe or misaligned with OSL values
+        - label: Maintainers requested removal
+        - label: Other
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and timeline
+    validations:
+      required: true
